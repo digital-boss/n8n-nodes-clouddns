@@ -33,7 +33,7 @@ npm install
 npm install n8n
 
 # "Install" the locally published module
-npm link @digital-boss/n8n-nodes-starter
+npm link @digital-boss/n8n-nodes-cloudns
 
 # Start n8n
 npx n8n
