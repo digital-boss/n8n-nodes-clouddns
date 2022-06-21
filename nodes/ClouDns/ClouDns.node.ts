@@ -8,6 +8,7 @@ import {
 	INodeExecutionData,
 	INodeType,
 	INodeTypeDescription,
+	LoggerProxy,
 	NodeApiError,
 } from "n8n-workflow";
 
@@ -17,20 +18,20 @@ import { OptionsWithUri } from "request";
 
 import { version } from "../version";
 import { recordFields, recordOperations } from "./descriptions";
-import { ClouDnsApi } from "../../credentials/ClouDnsApi.credentials"
+import { ClouDnsApi } from "../../credentials/ClouDnsApi.credentials";
 
 export class ClouDns implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: "ClouDns",
 		name: "clouDns",
-		icon: "file:clouDns.svg",
+		icon: "file:clouDns.png",
 		group: ["transform"],
 		version: 1,
 		subtitle: '={{$parameter["operation"] + ": " + $parameter["resource"]}}',
 		description: `Consume Cloud Dns API (v.${version})`,
 		defaults: {
 			name: "ClouDns",
-			color: "#1A82e2",
+			color: "#FF6000",
 		},
 		inputs: ["main"],
 		outputs: ["main"],
@@ -99,6 +100,7 @@ export class ClouDns implements INodeType {
 								});
 								endpoint = "get-records-pages-count";
 								method = "GET";
+								break;
 
 							case "create":
 								// ----------------------------------
