@@ -12,7 +12,7 @@ import {
 	NodeApiError,
 } from 'n8n-workflow';
 
-import { cloudDnsApiRequest } from './GenericFunctions';
+import { cloudDnsApiRequest, simplify } from './GenericFunctions';
 
 import { OptionsWithUri } from 'request';
 
@@ -83,10 +83,10 @@ export class ClouDns implements INodeType {
 				try {
 					const response = await this.helpers.request(options);
 
-					if (response.error) {
+					if (response.status === 'Failed') {
 						return {
 							status: 'Error',
-							message: `${response.error}`,
+							message: `${response.statusDescription}`,
 						};
 					}
 				} catch (err) {
@@ -140,7 +140,7 @@ export class ClouDns implements INodeType {
 									'domain-name': this.getNodeParameter('domainName', i),
 									...(this.getNodeParameter('additionalFields', i) as {}),
 								});
-								endpoint = 'get-records-pages-cont';
+								endpoint = 'get-records-pages-count';
 								method = 'GET';
 								break;
 
@@ -181,7 +181,7 @@ export class ClouDns implements INodeType {
 								// ----------------------------------
 								Object.assign(qs, {
 									'domain-name': this.getNodeParameter('domainName', i),
-									...(this.getNodeParameter('additionalFields', i) as {}),
+									'record-id': this.getNodeParameter('recordId', i),
 								});
 								endpoint = 'delete-record';
 								method = 'GET';
@@ -204,7 +204,11 @@ export class ClouDns implements INodeType {
 					qs,
 				);
 
-				if (!responseData) {
+				if (typeof responseData === 'number') {
+					responseData = { value: responseData };
+				}
+
+				if (!responseData || Object.keys(responseData).length === 0) {
 					responseData = { success: true };
 				}
 
@@ -212,13 +216,8 @@ export class ClouDns implements INodeType {
 					throw new NodeApiError(this.getNode(), responseData);
 				}
 
-				if (responseData?.name === 'Error') {
-					throw new NodeApiError(this.getNode(), responseData);
-				}
-
 				if (this.getNodeParameter('simplifyOutput', 0)) {
-					delete responseData.status;
-					delete responseData.statusDescription;
+					responseData = simplify(responseData);
 				}
 
 				if (Array.isArray(responseData)) {

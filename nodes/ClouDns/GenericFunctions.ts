@@ -60,3 +60,7 @@ export async function cloudDnsApiRequest(
 		throw new NodeApiError(this.getNode(), error);
 	}
 }
+
+export function simplify(jsonData: IDataObject): IDataObject[] {
+	return (jsonData['data'] as IDataObject[]) || jsonData;
+}
