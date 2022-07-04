@@ -1,13 +1,13 @@
-import { OptionsWithUri } from "request";
+import { OptionsWithUri } from 'request';
 
 import {
 	IExecuteFunctions,
 	IExecuteSingleFunctions,
 	IHookFunctions,
 	ILoadOptionsFunctions,
-} from "n8n-core";
+} from 'n8n-core';
 
-import { IDataObject, NodeApiError, NodeOperationError } from "n8n-workflow";
+import { IDataObject, NodeApiError, NodeOperationError } from 'n8n-workflow';
 
 export async function cloudDnsApiRequest(
 	this:
@@ -19,17 +19,17 @@ export async function cloudDnsApiRequest(
 	endpoint: string,
 	body: object = {},
 	qs: object = {},
-	uri?: string
+	uri?: string,
 ): Promise<any> {
 	// tslint:disable-line:no-any
 
 	//Get credentials the user provided for this node
-	const credentials = (await this.getCredentials("clouDnsApi")) as IDataObject;
+	const credentials = (await this.getCredentials('clouDnsApi')) as IDataObject;
 
 	if (credentials === undefined) {
 		throw new NodeOperationError(
 			this.getNode(),
-			"No credentials got returned!"
+			'No credentials got returned!',
 		);
 	}
 
@@ -38,8 +38,8 @@ export async function cloudDnsApiRequest(
 		method,
 		headers: {},
 		qs: {
-			"auth-id": credentials.authId,
-			"auth-password": credentials.authPassword,
+			'auth-id': credentials.authId,
+			'auth-password': credentials.authPassword,
 			...qs,
 		},
 		body,
@@ -59,4 +59,8 @@ export async function cloudDnsApiRequest(
 	} catch (error) {
 		throw new NodeApiError(this.getNode(), error);
 	}
+}
+
+export function simplify(jsonData: IDataObject): IDataObject[] {
+	return (jsonData['data'] as IDataObject[]) || jsonData;
 }
