@@ -30,7 +30,7 @@ const recordAdditionalFields = [
 		description: 'Port for SRV record',
 	},
 	{
-		displayName: 'frame',
+		displayName: 'Frame',
 		name: 'frame',
 		type: 'options',
 		options: [
@@ -47,7 +47,7 @@ const recordAdditionalFields = [
 		description: '0 or 1 for Web redirects to disable or enable frame',
 	},
 	{
-		displayName: 'Frame title',
+		displayName: 'Frame Title',
 		name: 'frameTitle',
 		type: 'string',
 		default: '',
@@ -68,7 +68,7 @@ const recordAdditionalFields = [
 		description: 'Description if frame is enabled in Web redirects',
 	},
 	{
-		displayName: 'Mobile meta',
+		displayName: 'Mobile Meta',
 		name: 'mobileMeta',
 		type: 'number',
 		default: 0,
@@ -76,7 +76,7 @@ const recordAdditionalFields = [
 			'Mobile responsive meta tags if Web redirects with frame is enabled. Default value - 0.',
 	},
 	{
-		displayName: 'Save path',
+		displayName: 'Save Path',
 		name: 'savePath',
 		type: 'options',
 		options: [
@@ -93,7 +93,7 @@ const recordAdditionalFields = [
 		description: '0 or 1 for Web redirects',
 	},
 	{
-		displayName: 'Redirect type',
+		displayName: 'Redirect Type',
 		name: 'redirectType',
 		type: 'options',
 		options: [
@@ -140,7 +140,7 @@ const recordAdditionalFields = [
 			'Type of the SSHFP algorithm. Required for SSHFP records only.',
 	},
 	{
-		displayName: 'status',
+		displayName: 'Status',
 		name: 'status',
 		type: 'number',
 		default: 0,
@@ -148,7 +148,7 @@ const recordAdditionalFields = [
 			'Set to 1 to create the record active or to 0 to create it inactive. If omitted the record will be created active.',
 	},
 	{
-		displayName: 'Geo DNS Location',
+		displayName: 'Geo Dns Location',
 		name: 'geodnsLocation',
 		type: 'number',
 		default: 0,
@@ -156,14 +156,14 @@ const recordAdditionalFields = [
 			'ID of a GeoDNS location for A, AAAA, CNAME, NAPTR or SRV record. The GeoDNS locations can be obtained with List GeoDNS locations',
 	},
 	{
-		displayName: 'CAA Flag',
+		displayName: 'Caa Flag',
 		name: 'caaFlag',
 		type: 'number',
 		default: 0,
 		description: '0 - Non critical or 128 - Critical',
 	},
 	{
-		displayName: 'CAA Type',
+		displayName: 'Caa Type',
 		name: 'caaType',
 		type: 'string',
 		default: '',
@@ -171,14 +171,14 @@ const recordAdditionalFields = [
 			'Type of CAA record. The available flags are issue, issuewild, iodef.',
 	},
 	{
-		displayName: 'CAA Value',
+		displayName: 'Caa Value',
 		name: 'caaValue',
 		type: 'string',
 		default: '',
 		description: `If caa_type is issue, caa_value can be hostname or ";". If caa_type is issuewild, it can be hostname or ";". If caa_type is iodef, it can be "mailto:someemail@address.tld, http://example.tld or http://example.tld.`,
 	},
 	{
-		displayName: 'TLSA Usage',
+		displayName: 'Tlsa Usage',
 		name: 'tlsaUsage',
 		type: 'string',
 		default: '',
@@ -186,7 +186,7 @@ const recordAdditionalFields = [
 			'(From 0 to 3) It shows the provided association that will be used.',
 	},
 	{
-		displayName: 'TLSA Selector',
+		displayName: 'Tlsa Selector',
 		name: 'tlsaSelector',
 		type: 'string',
 		default: '',
@@ -194,7 +194,7 @@ const recordAdditionalFields = [
 			'(From 0 to 1) It specifies which part of the TLS certificate presented by the server will be matched against the association data.',
 	},
 	{
-		displayName: 'TLSA Matching Type',
+		displayName: 'Tlsa Matching Type',
 		name: 'tlsaMatchingType',
 		type: 'string',
 		default: '',
@@ -293,7 +293,7 @@ const recordAdditionalFields = [
 const recordAttributes = (operation: string) =>
 	[
 		{
-			displayName: 'Domain name',
+			displayName: 'Domain Name',
 			name: 'domainName',
 			type: 'string',
 			required: true,
@@ -532,7 +532,7 @@ export const recordFields: INodeProperties[] = [
 				description: 'Host of the records you want to list',
 			},
 			{
-				displayName: 'Host like',
+				displayName: 'Host Like',
 				name: 'hostLike',
 				type: 'string',
 				default: '',
@@ -547,7 +547,7 @@ export const recordFields: INodeProperties[] = [
 				description: 'Type of the records you want to list (record types)',
 			},
 			{
-				displayName: 'Rows per page',
+				displayName: 'Rows Per Page',
 				name: 'rowsPerPage',
 				type: 'number',
 				default: 10,
