@@ -631,7 +631,7 @@ export const recordFields: INodeProperties[] = [
 				description: 'Type of the records you want to list (record types)',
 			},
 			{
-				displayName: 'Rows per page',
+				displayName: 'Rows Per Page',
 				name: 'rowsPerPage',
 				type: 'number',
 				default: 10,
