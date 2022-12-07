@@ -62,11 +62,9 @@ export async function cloudDnsApiRequest(
 }
 
 export function simplify(jsonData: IDataObject, operation: string): IDataObject[] {
-	let result = (jsonData['data'] as IDataObject[]) || jsonData;
-
 	if (operation === 'list') {
-		result = Object.values(result);
+		return Object.values(jsonData as object);
 	}
 
-	return result;
+	return (jsonData['data'] as IDataObject[]) || jsonData;;
 }
