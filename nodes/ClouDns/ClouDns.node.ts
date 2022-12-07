@@ -217,7 +217,7 @@ export class ClouDns implements INodeType {
 				}
 
 				if (this.getNodeParameter('simplifyOutput', 0)) {
-					responseData = simplify(responseData);
+					responseData = simplify(responseData, operation);
 				}
 
 				if (Array.isArray(responseData)) {
